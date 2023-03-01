@@ -59,25 +59,6 @@ function Header() {
                                 </ul>
                             </nav>
                         </div>
-                        <div className="col-lg-3">
-                            <div className="header__right">
-                                <div className="header__right__auth">
-                                    <Link to="/">Login</Link>
-                                    <Link to="/">Register</Link>
-                                </div>
-                                <ul className="header__right__widget">
-                                    <li><span className="icon_search search-switch">
-                                    </span></li>
-                                    <li><Link to="/"><span className="icon_heart_alt">
-                                    </span>
-                                        <div className="tip">2</div>
-                                    </Link></li>
-                                    <li><Link to="/"><span className="icon_bag_alt"></span>
-                                        <div className="tip">2</div>
-                                    </Link></li>
-                                </ul>
-                            </div>
-                        </div>
                     </div>
                     <div className="canvas__open">
                         <i className="fa fa-bars"></i>
