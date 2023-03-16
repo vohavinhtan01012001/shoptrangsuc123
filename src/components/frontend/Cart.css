@@ -1,0 +1,21 @@
+.pro-qty{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.dec-qtybtn {
+    border: none;
+}
+
+.pro-qty input {
+    width: 60px;
+}
+
+.cart__product__img{
+    width: 200px;
+}
+
+.rating i {
+    padding: 2px;
+    font-size: 50px;
+}

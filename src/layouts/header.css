@@ -1,0 +1,27 @@
+.header__user__menu{
+    position: relative;
+}
+.user__menu--list{
+    position: absolute;
+    top: 20px;
+    left: -75px;
+    /* height: 100px; */
+    background-color: rgb(242, 248, 248);
+    list-style-type: none;
+    width: 200px;
+    z-index: 999;
+    text-align: left;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 1px 8px rgb(0 0 0);
+}
+
+.user__menu--item:first-child{
+    font-weight: 800;
+    cursor:text;
+}
+
+.user__menu--item{
+    padding: 10px;
+    cursor: pointer;
+}

@@ -1,4 +1,4 @@
-import axios from 'axios';
+/* import axios from 'axios';
 
 const Axios = axios.create({
     baseURL: 'https://localhost:4200',
@@ -8,4 +8,4 @@ const Axios = axios.create({
         'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
     }
 });
-export default Axios;
+export default Axios; */

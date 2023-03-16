@@ -2134,7 +2134,7 @@ a:focus {
 }
 
 .shop__cart__table tbody tr .cart__product__item .cart__product__item__title .rating i {
-	font-size: 10px;
+	font-size: 15px;
 	color: #e3c01c;
 	margin-right: -4px;
 }

@@ -1,0 +1,135 @@
+.app__container {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.app__container--category {
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.app__container--category i {
+    font-size:  15px;
+}
+
+.app__container--link {
+    text-decoration: none;
+    color: var(--text-color);
+    margin: 0 10px;
+
+}
+
+.app__container--text {
+    margin: 0 10px;
+}
+
+.app__container--formLogin {
+    background-color: var(--background-color);
+    margin: auto;
+    padding: 10px 20px;
+    width: 400px;
+    color: var(--text-color);
+    box-shadow: 7px 6px 5px rgb(0 0 0 / 10%);
+    margin-bottom: 50px;
+}
+
+
+.formLogin__heading {
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 25px;
+}
+
+.formLogin__email,
+.formLogin__password {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.formLogin__email {
+    margin-top: 20px;
+}
+
+.formLogin__password {
+    margin-top: 20px;
+}
+
+.formLogin__email--icon,
+.formLogin__password--icon {
+    font-size: 20px;
+    border: 1px solid #ccc;
+    width: 50px;
+    height: 35px;
+    text-align: center;
+    line-height: 35px;
+    background-color: rgba(138, 138, 138, 0.2);
+    color: rgb(190, 189, 189);
+}
+
+
+.formLogin__email--input,
+.formLogin__password--input {
+    height: 35px;
+    width: 100%;
+    padding: 0 10px;
+    font-size: 15px;
+    outline: none;
+    border: 1px solid rgb(201, 196, 196);
+}
+
+
+.formLogin__btn {
+    background-color: var(--black-color);
+    width: 100%;
+    height: 35px;
+    margin-top: 20px;
+}
+
+.formLogin__btn:hover .formLogin__btn--login {
+    background-color: var(--aqua-color);
+    color: var(--text-color);
+}
+
+.formLogin__btn--login {
+    text-decoration: none;
+    font-size: 18px;
+    display: block;
+    text-align: center;
+    color: white;
+    line-height: 35px;
+    width: 100%;
+    background: black;
+    border: none;
+    font-weight: 600;
+}
+
+
+.formLogin__register {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.formLogin__register--link {
+    color: var(--aqua-color);
+    font-size: 15px;
+    text-decoration: none;
+}
+
+.formLogin__register--link:hover {
+    color: red;
+}
+
+.formLogin__register p {
+    font-size: 1.4rem;
+    padding: 0 10px;
+    margin-bottom: 0;
+}
+

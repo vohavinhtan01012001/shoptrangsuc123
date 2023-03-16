@@ -1,19 +1,44 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Footer from "../../layouts/Footer";
 import Header from "../../layouts/Header";
 
-import category6 from "../../assets/img/categories/category-6.jpg"
-import category7 from "../../assets/img/categories/category-7.jpg"
-import category8 from "../../assets/img/categories/category-8.jpg"
-import category9 from "../../assets/img/categories/category-9.jpg"
-import category10 from "../../assets/img/categories/category-10.jpg"
+//Countdown discount
+import Countdown from "./Countdown";
+import moment from "moment";
 
+import axios from "axios";
+
+import category6 from "../../assets/img/categories/category-6.jpg";
+import category7 from "../../assets/img/categories/category-7.jpg";
+import category8 from "../../assets/img/categories/category-8.jpg";
+import category9 from "../../assets/img/categories/category-9.jpg";
+import category10 from "../../assets/img/categories/category-10.jpg";
+
+//Image discount
+import discount from "../../assets/img/discount.jpg";
 
 function Home() {
+  const endDate = moment()
+    .add(1, "day")
+    .add(1, "hour")
+    .add(30, "minutes")
+    .add(10, "seconds");
+  const day = endDate.get("date"); // Lấy ngày trong tháng
+  const hour = endDate.get("hour"); // Lấy giờ trong ngày
+  const minute = endDate.get("minute"); // Lấy phút trong giờ
+  const second = endDate.get("second"); // Lấy giây trong phút
+
+  const [product, setproduct] = useState([]);
+  useEffect(() => {
+    axios.get("http://localhost:3001/products").then((res) => {
+      setproduct(res.data);
+    });
+  }, []);
+
   return (
-    <>
-       <Header />
+    <body>
+      <Header />
       <section className="categories">
         <div className="container-fluid">
           <div className="row">
@@ -129,54 +154,40 @@ function Home() {
                 <div className="section-title">
                   <h4>Đang Hot</h4>
                 </div>
-                <div className="trend__item">
-                  <div className="trend__item__pic">
-                    <img src="img/trend/ht-1.jpg" alt="" />
-                  </div>
-                  <div className="trend__item__text">
-                    <h6>NHẪN THOI 4 ĐÁ FREESIZE 0537</h6>
-                    <div className="rating">
-                      <i className="fa fa-star"></i>
-                      <i className="fa fa-star"></i>
-                      <i className="fa fa-star"></i>
-                      <i className="fa fa-star"></i>
-                      <i className="fa fa-star"></i>
+                {product.map((item, index) => {
+                  return index <= 2 ? (
+                    <div key={index} className="trend__item">
+                      <div className="trend__item__pic">
+                        <img src={item.img1} alt="" width={90} height={90} />
+                      </div>
+                      <div className="trend__item__text">
+                        <h6>
+                          <Link
+                            to={`/productdetail/${item.id}`}
+                            style={{ color: "#000000" }}
+                          >
+                            {item.productName}
+                          </Link>
+                        </h6>
+                        <div className="rating">
+                          <i className="fa fa-star"></i>
+                          <i className="fa fa-star"></i>
+                          <i className="fa fa-star"></i>
+                          <i className="fa fa-star"></i>
+                          <i className="fa fa-star"></i>
+                        </div>
+                        <div className="product__price">
+                          {Intl.NumberFormat("vi-VN", {
+                            style: "currency",
+                            currency: "VND",
+                          }).format(item.price)}
+                        </div>
+                      </div>
                     </div>
-                    <div className="product__price">160,000₫</div>
-                  </div>
-                </div>
-                <div className="trend__item">
-                  <div className="trend__item__pic">
-                    <img src="img/trend/ht-2.jpg" alt="" />
-                  </div>
-                  <div className="trend__item__text">
-                    <h6>NHẪN TRÁI TIM LẤP LÁNH NGÓN ÚT 0754</h6>
-                    <div className="rating">
-                      <i className="fa fa-star"></i>
-                      <i className="fa fa-star"></i>
-                      <i className="fa fa-star"></i>
-                      <i className="fa fa-star"></i>
-                      <i className="fa fa-star"></i>
-                    </div>
-                    <div className="product__price">200,000₫</div>
-                  </div>
-                </div>
-                <div className="trend__item">
-                  <div className="trend__item__pic">
-                    <img src="img/trend/ht-3.jpg" alt="" />
-                  </div>
-                  <div className="trend__item__text">
-                    <h6>NHẪN VÒNG ĐỐI BI ZICZAC 0756</h6>
-                    <div className="rating">
-                      <i className="fa fa-star"></i>
-                      <i className="fa fa-star"></i>
-                      <i className="fa fa-star"></i>
-                      <i className="fa fa-star"></i>
-                      <i className="fa fa-star"></i>
-                    </div>
-                    <div className="product__price">220,000₫</div>
-                  </div>
-                </div>
+                  ) : (
+                    ""
+                  );
+                })}
               </div>
             </div>
             <div className="col-lg-4 col-md-4 col-sm-6">
@@ -184,54 +195,40 @@ function Home() {
                 <div className="section-title">
                   <h4>Bán chạy</h4>
                 </div>
-                <div className="trend__item">
-                  <div className="trend__item__pic">
-                    <img src="img/trend/bs-1.jpg" alt="" />
-                  </div>
-                  <div className="trend__item__text">
-                    <h6>BÔNG TAI XOẮN XƯỚC 0500</h6>
-                    <div className="rating">
-                      <i className="fa fa-star"></i>
-                      <i className="fa fa-star"></i>
-                      <i className="fa fa-star"></i>
-                      <i className="fa fa-star"></i>
-                      <i className="fa fa-star"></i>
+                {product.map((item, index) => {
+                  return index >= 5 && index < 8 ? (
+                    <div key={index} className="trend__item">
+                      <div className="trend__item__pic">
+                        <img src={item.img1} alt="" width={90} height={90} />
+                      </div>
+                      <div className="trend__item__text">
+                        <h6>
+                          <Link
+                            to={`/productdetail/${item.id}`}
+                            style={{ color: "#000000" }}
+                          >
+                            {item.productName}
+                          </Link>
+                        </h6>
+                        <div className="rating">
+                          <i className="fa fa-star"></i>
+                          <i className="fa fa-star"></i>
+                          <i className="fa fa-star"></i>
+                          <i className="fa fa-star"></i>
+                          <i className="fa fa-star"></i>
+                        </div>
+                        <div className="product__price">
+                          {Intl.NumberFormat("vi-VN", {
+                            style: "currency",
+                            currency: "VND",
+                          }).format(item.price)}
+                        </div>
+                      </div>
                     </div>
-                    <div className="product__price">$ 59.0</div>
-                  </div>
-                </div>
-                <div className="trend__item">
-                  <div className="trend__item__pic">
-                    <img src="img/trend/bs-2.jpg" alt="" />
-                  </div>
-                  <div className="trend__item__text">
-                    <h6>DÂY CHUYỀN TRÁI TIM FULL ĐÁ BABY 0133</h6>
-                    <div className="rating">
-                      <i className="fa fa-star"></i>
-                      <i className="fa fa-star"></i>
-                      <i className="fa fa-star"></i>
-                      <i className="fa fa-star"></i>
-                      <i className="fa fa-star"></i>
-                    </div>
-                    <div className="product__price">300,000₫</div>
-                  </div>
-                </div>
-                <div className="trend__item">
-                  <div className="trend__item__pic">
-                    <img src={category7} alt="" />
-                  </div>
-                  <div className="trend__item__text">
-                    <h6>LẮC TAY VÔ CỰC TRƠN 0755</h6>
-                    <div className="rating">
-                      <i className="fa fa-star"></i>
-                      <i className="fa fa-star"></i>
-                      <i className="fa fa-star"></i>
-                      <i className="fa fa-star"></i>
-                      <i className="fa fa-star"></i>
-                    </div>
-                    <div className="product__price">340,000₫</div>
-                  </div>
-                </div>
+                  ) : (
+                    ""
+                  );
+                })}
               </div>
             </div>
             <div className="col-lg-4 col-md-4 col-sm-6">
@@ -239,54 +236,40 @@ function Home() {
                 <div className="section-title">
                   <h4>Sản phẩm mới</h4>
                 </div>
-                <div className="trend__item">
-                  <div className="trend__item__pic">
-                    <img src="img/trend/f-1.jpg" alt="" />
-                  </div>
-                  <div className="trend__item__text">
-                    <h6>LẮC TAY VÀNG 14K HANADA KHẮC CHỮ SIGN 061</h6>
-                    <div className="rating">
-                      <i className="fa fa-star"></i>
-                      <i className="fa fa-star"></i>
-                      <i className="fa fa-star"></i>
-                      <i className="fa fa-star"></i>
-                      <i className="fa fa-star"></i>
+                {product.map((item, index) => {
+                  return index >= 2 && index < 5 ? (
+                    <div key={index} className="trend__item">
+                      <div className="trend__item__pic">
+                        <img src={item.img1} alt="" width={90} height={90} />
+                      </div>
+                      <div className="trend__item__text">
+                        <h6>
+                          <Link
+                            to={`/productdetail/${item.id}`}
+                            style={{ color: "#000000" }}
+                          >
+                            {item.productName}
+                          </Link>
+                        </h6>
+                        <div className="rating">
+                          <i className="fa fa-star"></i>
+                          <i className="fa fa-star"></i>
+                          <i className="fa fa-star"></i>
+                          <i className="fa fa-star"></i>
+                          <i className="fa fa-star"></i>
+                        </div>
+                        <div className="product__price">
+                          {Intl.NumberFormat("vi-VN", {
+                            style: "currency",
+                            currency: "VND",
+                          }).format(item.price)}
+                        </div>
+                      </div>
                     </div>
-                    <div className="product__price">4,760,000₫</div>
-                  </div>
-                </div>
-                <div className="trend__item">
-                  <div className="trend__item__pic">
-                    <img src="img/trend/f-2.jpg" alt="" />
-                  </div>
-                  <div className="trend__item__text">
-                    <h6>Metallic earrings</h6>
-                    <div className="rating">
-                      <i className="fa fa-star"></i>
-                      <i className="fa fa-star"></i>
-                      <i className="fa fa-star"></i>
-                      <i className="fa fa-star"></i>
-                      <i className="fa fa-star"></i>
-                    </div>
-                    <div className="product__price">3,210,000₫</div>
-                  </div>
-                </div>
-                <div className="trend__item">
-                  <div className="trend__item__pic">
-                    <img src="img/trend/f-3.jpg" alt="" />
-                  </div>
-                  <div className="trend__item__text">
-                    <h6>DÂY CHUYỀN 14K HANADA CHỮ V ĐÁ 051</h6>
-                    <div className="rating">
-                      <i className="fa fa-star"></i>
-                      <i className="fa fa-star"></i>
-                      <i className="fa fa-star"></i>
-                      <i className="fa fa-star"></i>
-                      <i className="fa fa-star"></i>
-                    </div>
-                    <div className="product__price">3,510,000₫</div>
-                  </div>
-                </div>
+                  ) : (
+                    ""
+                  );
+                })}
               </div>
             </div>
           </div>
@@ -298,37 +281,24 @@ function Home() {
           <div className="row">
             <div className="col-lg-6 p-0">
               <div className="discount__pic">
-                <img src="img/discount.jpg" alt="" />
+                <img src={discount} alt="" />
               </div>
             </div>
             <div className="col-lg-6 p-0">
               <div className="discount__text">
                 <div className="discount__text__title">
                   <span>Giảm giá</span>
-                  <h2>Mùa hè 2023</h2>
+                  <h2>Mùa hè</h2>
                   <h5>
                     <span>Giảm</span> 50%
                   </h5>
                 </div>
                 <div className="discount__countdown" id="countdown-time">
-                  <div className="countdown__item">
-                    <span>22</span>
-                    <p>Days</p>
-                  </div>
-                  <div className="countdown__item">
-                    <span>18</span>
-                    <p>Hour</p>
-                  </div>
-                  <div className="countdown__item">
-                    <span>46</span>
-                    <p>Min</p>
-                  </div>
-                  <div className="countdown__item">
-                    <span>05</span>
-                    <p>Sec</p>
-                  </div>
+                  <h3>
+                    <Countdown endDate={endDate} />{" "}
+                  </h3>
                 </div>
-                <Link to="/">Shop now</Link>
+                <Link to="/">Mua ngay</Link>
               </div>
             </div>
           </div>
@@ -370,8 +340,8 @@ function Home() {
         </div>
       </section>
       <Footer />
-    </>
-  )
+    </body>
+  );
 }
 
-export default Home
+export default Home;
